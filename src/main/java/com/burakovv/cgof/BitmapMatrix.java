@@ -51,4 +51,8 @@ public class BitmapMatrix {
     private int bitMask(int bitIndex) {
         return 1 << bitIndex % Integer.SIZE;
     }
+
+    public boolean contains(int x, int y) {
+        return x >= 0 && x < width() && y >= 0 && y < height();
+    }
 }
