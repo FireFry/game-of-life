@@ -15,8 +15,8 @@ public class GameFieldTest {
             for (int height = 0; height <= Integer.SIZE; height++) {
                 boolean[][] expected = new boolean[width][height];
                 GameField actual = new GameField(width, height);
-                assertEquals(width, actual.width());
-                assertEquals(height, actual.height());
+                assertEquals(width, actual.area().boundX);
+                assertEquals(height, actual.area().boundY);
                 for (int i = 0; i < width * height; i++) {
                     int x = random.nextInt(width);
                     int y = random.nextInt(height);

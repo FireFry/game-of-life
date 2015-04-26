@@ -3,23 +3,16 @@ package com.burakovv.cgof;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
 public class GameField {
-    private final int width;
-    private final int height;
+    private final Rectangle area;
     private final AtomicIntegerArray data;
 
     public GameField(int width, int height) {
-        this.width = width;
-        this.height = height;
-        int dataSize = dataIndex(bitIndex(width, height)) + 1;
-        this.data = new AtomicIntegerArray(dataSize);
+        this.area = Rectangle.create(0, 0, width, height);
+        this.data = new AtomicIntegerArray(dataIndex(bitIndex(width, height)) + 1);
     }
 
-    public int width() {
-        return width;
-    }
-
-    public int height() {
-        return height;
+    public Rectangle area() {
+        return area;
     }
 
     public boolean get(int x, int y) {
@@ -41,7 +34,7 @@ public class GameField {
     }
 
     private int bitIndex(int x, int y) {
-        return x + y * width;
+        return x + y * area.boundX;
     }
 
     private int dataIndex(int bitIndex) {
@@ -53,6 +46,6 @@ public class GameField {
     }
 
     public boolean contains(int x, int y) {
-        return x >= 0 && x < width() && y >= 0 && y < height();
+        return x >= 0 && x < area().boundX && y >= 0 && y < area().boundY;
     }
 }

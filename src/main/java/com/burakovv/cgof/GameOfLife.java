@@ -10,20 +10,11 @@ public class GameOfLife {
 
     private GameOfLife() {}
 
-    public static void progress(
-            GameField src,
-            GameField target,
-            int x,
-            int y,
-            int width,
-            int height
-    ) {
-        for (int dx = 0; dx < width; dx++) {
-            for (int dy = 0; dy < height; dy++) {
-                int cx = x + dx;
-                int cy = y + dy;
-                if (src.contains(cx, cy) && target.contains(cx, cy)) {
-                    target.set(cx, cy, isAliveOnNextStep(src, cx, cy));
+    public static void progress(GameField src, GameField target, Rectangle area) {
+        for (int x = area.offsetX; x < area.boundX; x++) {
+            for (int y = area.offsetY; y < area.boundY; y++) {
+                if (src.contains(x, y) && target.contains(x, y)) {
+                    target.set(x, y, isAliveOnNextStep(src, x, y));
                 }
             }
         }
