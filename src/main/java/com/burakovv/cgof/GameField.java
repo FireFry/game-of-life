@@ -54,4 +54,19 @@ public class GameField {
     public int height() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append(getClass().getSimpleName());
+        b.append(':');
+        b.append(System.lineSeparator());
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                b.append(get(x, y) ? '0' : '.');
+            }
+            b.append(System.lineSeparator());
+        }
+        return b.toString();
+    }
 }

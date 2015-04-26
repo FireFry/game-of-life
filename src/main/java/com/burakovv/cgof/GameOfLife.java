@@ -1,5 +1,8 @@
 package com.burakovv.cgof;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class GameOfLife {
     private static final int[] NEIGHBOUR_DX = {-1, -1, -1, 0, 0, 1, 1, 1};
     private static final int[] NEIGHBOUR_DY = {-1, 0, 1, -1, 1, -1, 0, 1};
@@ -11,8 +14,14 @@ public class GameOfLife {
     private GameOfLife() {}
 
     public static void progress(GameField src, GameField target) {
-        for (int x = 0; x < src.width(); x++) {
-            for (int y = 0; y < src.height(); y++) {
+        progress(src, target, 0, 0, src.width(), src.height());
+    }
+
+    public static void progress(GameField src, GameField target, int offsetX, int offsetY, int width, int height) {
+        for (int dx = 0; dx < width; dx++) {
+            for (int dy = 0; dy < height; dy++) {
+                int x = offsetX + dx;
+                int y = offsetY + dy;
                 if (src.contains(x, y) && target.contains(x, y)) {
                     target.set(x, y, isAliveOnNextStep(src, x, y));
                 }
@@ -38,5 +47,17 @@ public class GameOfLife {
             }
         }
         return count;
+    }
+
+    public void randomize(GameField gameField) {
+        randomize(gameField, ThreadLocalRandom.current());
+    }
+
+    public static void randomize(GameField gameField, Random random) {
+        for (int x = 0; x < gameField.width(); x++) {
+            for (int y = 0; y < gameField.height(); y++) {
+                gameField.set(x, y, random.nextBoolean());
+            }
+        }
     }
 }
