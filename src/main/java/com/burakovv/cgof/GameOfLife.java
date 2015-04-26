@@ -5,35 +5,14 @@ public class GameOfLife {
     private static final int[] NEIGHBOUR_DY = {-1, 0, 1, -1, 1, -1, 0, 1};
     private static final int NEIGHBOURS = NEIGHBOUR_DX.length;
 
-    private static final boolean[] NEXT_ALIVE = {
-            false,
-            false,
-            true,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false,
-    };
-
-    private static final boolean[] NEXT_DEAD = {
-            false,
-            false,
-            false,
-            true,
-            false,
-            false,
-            false,
-            false,
-            false,
-    };
+    private static final boolean[] NEXT_ALIVE = {false, false, true, true, false, false, false, false, false};
+    private static final boolean[] NEXT_DEAD = {false, false, false, true, false, false, false, false, false};
 
     private GameOfLife() {}
 
     public static void progress(
-            BitmapMatrix src,
-            BitmapMatrix target,
+            GameField src,
+            GameField target,
             int x,
             int y,
             int width,
@@ -50,7 +29,7 @@ public class GameOfLife {
         }
     }
 
-    public static boolean isAliveOnNextStep(BitmapMatrix src, int x, int y) {
+    public static boolean isAliveOnNextStep(GameField src, int x, int y) {
         return isAliveOnNextStep(src.get(x, y), countNeighbours(src, x, y));
     }
 
@@ -58,7 +37,7 @@ public class GameOfLife {
         return isAlive ? NEXT_ALIVE[neighbours] : NEXT_DEAD[neighbours];
     }
 
-    public static int countNeighbours(BitmapMatrix src, int x, int y) {
+    public static int countNeighbours(GameField src, int x, int y) {
         int count = 0;
         for (int d = 0; d < NEIGHBOURS; d++) {
             int nx = x + NEIGHBOUR_DX[d];

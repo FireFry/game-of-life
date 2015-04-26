@@ -2,12 +2,12 @@ package com.burakovv.cgof;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
-public class BitmapMatrix {
+public class GameField {
     private final int width;
     private final int height;
     private final AtomicIntegerArray data;
 
-    public BitmapMatrix(int width, int height) {
+    public GameField(int width, int height) {
         this.width = width;
         this.height = height;
         int dataSize = dataIndex(bitIndex(width, height)) + 1;

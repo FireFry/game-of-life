@@ -6,7 +6,7 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-public class BitmapMatrixTest {
+public class GameFieldTest {
     private static final Random random = new Random(75319539);
 
     @Test
@@ -14,7 +14,7 @@ public class BitmapMatrixTest {
         for (int width = 0; width <= Integer.SIZE; width++) {
             for (int height = 0; height <= Integer.SIZE; height++) {
                 boolean[][] expected = new boolean[width][height];
-                BitmapMatrix actual = new BitmapMatrix(width, height);
+                GameField actual = new GameField(width, height);
                 assertEquals(width, actual.width());
                 assertEquals(height, actual.height());
                 for (int i = 0; i < width * height; i++) {
