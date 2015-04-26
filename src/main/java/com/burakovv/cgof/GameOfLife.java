@@ -49,7 +49,7 @@ public class GameOfLife {
         return count;
     }
 
-    public void randomize(GameField gameField) {
+    public static void randomize(GameField gameField) {
         randomize(gameField, ThreadLocalRandom.current());
     }
 
